@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.css">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .main {
+            height: 350px;
+            background-color: aquamarine;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        #accordian {
+            margin: 100px, auto;
+            width: 600px;
+
+        }
+
+        #accordian li {
+            list-style: none;
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #accordian li label {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 18px;
+            cursor: pointer;
+            color: rgb(254, 149, 12);
+            font-weight: 700;
+
+
+        }
+
+        #accordian li label span {
+            /* transform: rotate(180deg); */
+            font-size: 25px;
+            color: black;
+        }
+
+        #accordian label+input[type="radio"] {
+            display: none;
+        }
+
+        #accordian .content {
+            padding: 0 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s;
+
+        }
+
+        #accordian label+input[type="radio"]:checked+.content {
+            max-height: 400px;
+        }
+
+        /* css of graph css */
+
+        .graph {
+            margin-top: 10px;
+            width: 100%;
+            height: 550px;
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-container {
+            width: 550px;
+            height: 500px;
+            background-color: bisque;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .line-1 {
+            margin-top: 20px;
+            width: 80px;
+            height: 400px;
+            background-color: black;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+        }
+
+        .line-2 {
+            margin-top: 20px;
+            width: 80px;
+            height: 400px;
+            background-color: rgb(220, 195, 195);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            animation-name: animation;
+            animation-duration: 14s;
+
+        }
+
+        @keyframes animation {
+            from {
+                background-color: red;
+            }
+
+            to {
+                background-color: yellow;
+            }
+        }
+
+        .line-3 {
+            margin-top: 20px;
+            width: 80px;
+            height: 400px;
+            background-color: black;
+            display: flex;
+            align-items: flex-end;
+
+
+        }
+
+        .frist-box {
+            width: 80px;
+            height: 100px;
+            background-color: bisque;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .second-box {
+            width: 80px;
+            height: 100px;
+            background-color: bisque;
+            position: relative;
+            display: flex;
+            justify-content: center;
+
+
+        }
+
+        .third-box {
+            width: 80px;
+            height: 100px;
+            background-color: bisque;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        #frist-para {
+
+            margin-top: 44px;
+            position: absolute;
+            transform: rotate(325deg);
+            transform-origin: 20% 20%;
+            margin-left: 10px;
+        }
+
+        #second-para {
+            margin-top: 44px;
+            position: absolute;
+            transform: rotate(325deg);
+            transform-origin: 20% 20%;
+            margin-left: 10px;
+
+        }
+
+        #third-para {
+            margin-top: 44px;
+            position: absolute;
+            transform: rotate(325deg);
+            transform-origin: 20% 20%;
+            margin-left: 10px;
+
+        }
+
+        /* css of accordian through js-- */
+
+        .acc-js {
+            width: 100%;
+            height: 600px;
+            background-color: beige;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 350px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .acco {
+            max-width: 600px;
+        }
+
+        .acco .content-Box {
+            position: relative;
+            margin: 10px 20px;
+
+        }
+
+        .acco .content-Box .label {
+            position: relative;
+            padding: 10px;
+            background-color: aquamarine;
+        }
+
+        .acco .content-Box .label::before {
+            content: "\f106";
+            font-family: "FontAwesome";
+            position: absolute;
+            right: 20px;
+            top: 33%;
+            transform: translate(-50%);
+
+
+        }
+
+        .acco .content-Box .content-last {
+            position: relative;
+            background-color: #fff;
+            height: 0;
+            overflow: hidden;
+            transition: 0.7s;
+            padding-left: 15px;
+
+        }
+
+        .acco .content-Box.activate .content-last {
+            height: 150px;
+        }
+
+        .acco .content-Box.activate .label::before {
+            content: "\f106";
+            font-family: "FontAwesome";
+            position: absolute;
+            right: 25px;
+            top: 29%;
+            transform: translate(-50%);
+            transform: rotate(180deg);
+
+
+
+        }
+
+        .label {
+            font-weight: 700;
+        }
+
+
+        /* animationm  css--  */
+        .ani {
+            background-color: black;
+            height: 700px;
+            width: 100%;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .main-last {
+            width: 330px;
+            height: 330px;
+            border: 1px solid #CCC;
+            background-image: url(earth.jpg);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 50%;
+        }
+
+        .circle2 {
+            width: 110px;
+            height: 110px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 50%;
+            background-image: url(sun.jpg);
+            /* transform: rotate(360deg); */
+            animation: circle2 6s linear infinite;
+        }
+        @keyframes circle2 {
+            0% {
+                transform: rotate(0deg);
+
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .circle1 {
+            width: 40px;
+            height: 40px;
+            background-image: url(green.jpg);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            margin: auto;
+            animation: circle1 6s linear infinite;
+        }
+
+        @keyframes circle1 {
+            0% {
+                transform: rotate(0deg) translate(-165px) rotate(0deg);
+
+            }
+
+            100% {
+                transform: rotate(360deg) translate(-165px) rotate(-360deg);
+            }
+        }
+
+        img {
+            height: 60px;
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- <h3>Accordian by Html and Css</h3> -->
+        <ul id="accordian">
+            <li>
+                <label for="frist">where is this? <span><i class="fa-solid fa-angle-up"></i></span></label>
+                <input type="radio" id="frist" name="accordian" checked>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dol
+                        oremque, dolores! adipisicing elit. Exercitationem, non!</p>
+                </div>
+
+            </li>
+            <li>
+                <label for="second">where to go? <span><i class="fa-solid fa-angle-up"></i></span></label>
+                <input type="radio" id="second" name="accordian">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dol
+                        oremque, dolores! adipisicing elit. Exercitationem, non!</p>
+                </div>
+
+            </li>
+            <li>
+                <label for="third">why to go? <span><i class="fa-solid fa-angle-up"></i></span></label>
+                <input type="radio" id="third" name="accordian">
+                <div class="content">
+
+                    <p>Lorem ipsum dolor sit amet consectetur
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dol
+                        oremque, dolores! adipisicing elit. Exercitationem, non!</p>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+    <!-- graps-- -->
+    <div class="graph">
+        <div class="main-container">
+            <div class="graph-1">
+                <div class="line-1">
+                    <div class="marg"></div>
+                    <div class="frist-box">
+                        <p id="frist-para">
+
+                            hello guy's
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="graph-2">
+                <div class="line-2">
+                    <div class="second-box">
+                        <p id="second-para">
+                            hello guy's
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="graph-3">
+                <div class="line-3">
+                    <div class="third-box">
+                        <p id="third-para">
+                            hello guy's
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- accordian through js-- -->
+    <div class="acc-js">
+        <div class="acco">
+            <div class="content-Box">
+                <div class="label">frist line</div>
+                <div class="content-last">
+                    <p>Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Harum et pariatur consequuntur. Quam minus porro voluptates
+                        illum aliquam quod quis aut cum magnam, soluta necessitatibus, quos illo
+                        eaque consequuntur.
+                    </p>
+
+
+                </div>
+            </div>
+            <div class="content-Box">
+                <div class="label">second line</div>
+                <div class="content-last">
+                    <p>Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Harum et pariatur consequuntur. Quam minus porro voluptates
+                        illum aliquam quod quis aut cum magnam, soluta necessitatibus, quos illo
+                        eaque consequuntur.
+                    </p>
+
+
+                </div>
+            </div>
+            <div class="content-Box">
+                <div class="label">third line</div>
+                <div class="content-last">
+                    <p>Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Harum et pariatur consequuntur. Quam minus porro voluptates
+                        illum aliquam quod quis aut cum magnam, soluta necessitatibus, quos illo
+                        eaque consequuntur.
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- animationss---- -->
+    <div class="ani">
+        <div class="main-last">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+
+        </div>
+    </div>
+
+
+       <!-- script for dropdown-- -->
+    <script>
+        const accordian = document.getElementsByClassName("content-Box");
+        for (i = 0; i < accordian.length; i++) {
+            accordian[i].addEventListener('click', function () {
+                this.classList.toggle('activate')
+                // this.classList.toggle('active')
+
+
+
+            })
+        }
+
+
+
+    </script>
+</body>
+
+</html>
+
